@@ -1,0 +1,580 @@
+/* CONFIGURACION GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #03040a;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* FONDO ESPACIAL */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
+    linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.65)),
+    url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1800");
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* ESTRELLAS Y BRILLOS */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1.5px),
+    radial-gradient(#a9d8ff 1px, transparent 1.5px);
+
+    background-size: 90px 90px, 130px 130px;
+    background-position: 10px 20px, 50px 70px;
+    opacity: 0.35;
+}
+
+/* CONTENEDOR DE CADA PAGINA */
+
+.pagina {
+    min-height: 100vh;
+    padding: 35px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-margin-top: 10px;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1250px;
+    min-height: 680px;
+    padding: 35px 55px;
+
+    position: relative;
+
+    border: 1px solid rgba(210,225,255,0.65);
+    border-radius: 25px;
+
+    background: rgba(5,7,15,0.58);
+
+    box-shadow:
+    0 0 25px rgba(255,255,255,0.08),
+    inset 0 0 35px rgba(255,255,255,0.04);
+
+    animation: aparecer 1s ease;
+}
+
+/* MENU SUPERIOR */
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.menu-titulo {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 13px;
+    background: rgba(150,160,180,0.30);
+    transition: 0.3s;
+}
+
+.menu a:first-of-type {
+    border-radius: 5px 0 0 5px;
+}
+
+.menu a:last-of-type {
+    border-radius: 0 5px 5px 0;
+}
+
+.menu a:hover,
+.menu a.activo {
+    background: rgba(180,195,220,0.65);
+    text-shadow: 0 0 10px white;
+}
+
+/* TITULOS */
+
+.titulo {
+    text-align: center;
+    font-size: clamp(30px, 4.5vw, 48px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 55px;
+
+    text-shadow:
+    0 0 10px white,
+    0 0 25px rgba(180,210,255,0.8);
+}
+
+/* DISTRIBUCION DEL CONTENIDO */
+
+.contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 55px;
+    min-height: 350px;
+}
+
+.imagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.imagen img {
+    width: 100%;
+    max-width: 420px;
+    height: 330px;
+    object-fit: cover;
+
+    border-radius: 25px;
+    border: 1px solid rgba(210,220,255,0.45);
+
+    box-shadow:
+    0 0 25px rgba(150,180,255,0.18);
+
+    transition: 0.5s;
+}
+
+.imagen img:hover {
+    transform: scale(1.035);
+    box-shadow: 0 0 35px rgba(160,200,255,0.4);
+}
+
+/* TEXTO */
+
+.texto {
+    flex: 1;
+    padding: 15px;
+}
+
+.texto h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 0 12px #b7d9ff;
+}
+
+.texto p {
+    font-size: 15px;
+    color: #e0e3ed;
+    line-height: 2;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* LINEA DECORATIVA */
+
+.linea {
+    width: 100%;
+    height: 1px;
+    margin-top: 30px;
+
+    background: linear-gradient(
+    90deg,
+    transparent,
+    white,
+    transparent
+    );
+
+    opacity: 0.65;
+}
+
+/* NAVEGACION INFERIOR */
+
+.navegacion {
+    position: absolute;
+    bottom: 25px;
+    left: 45px;
+    right: 45px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navegacion a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.navegacion a:hover {
+    color: #a9d8ff;
+    text-shadow: 0 0 10px white;
+}
+
+.navegacion .siguiente {
+    margin-left: auto;
+}
+
+/* SEGUNDA PAGINA */
+
+#tema2 .contenido {
+    flex-direction: row;
+}
+
+#tema2 .texto {
+    order: 1;
+}
+
+#tema2 .imagen {
+    order: 2;
+}
+
+/* NUMERACION */
+
+.numero {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #aebbd2;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* ANIMACION */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ============================= */
+/* TERCERA PAGINA: TEORIAS       */
+/* ============================= */
+
+.contenido-teorias {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "galaxia  texto"
+    "estrella texto";
+    gap: 25px 55px;
+    align-items: center;
+    min-height: 350px;
+}
+
+.galaxia {
+    grid-area: galaxia;
+}
+
+.galaxia img {
+    width: 100%;
+    max-width: 420px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 1px solid rgba(210,220,255,0.45);
+    box-shadow: 0 0 25px rgba(150,180,255,0.18);
+    transition: 0.5s;
+}
+
+.estrella {
+    grid-area: estrella;
+}
+
+.estrella img {
+    width: 100%;
+    max-width: 420px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 1px solid rgba(210,220,255,0.45);
+    box-shadow: 0 0 25px rgba(150,180,255,0.18);
+    transition: 0.5s;
+}
+
+.galaxia img:hover,
+.estrella img:hover {
+    transform: scale(1.035);
+    box-shadow: 0 0 35px rgba(160,200,255,0.4);
+}
+
+.planeta {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(210,220,255,0.5);
+    box-shadow: 0 0 25px rgba(150,120,255,0.45);
+}
+
+.texto-teorias {
+    grid-area: texto;
+    padding: 15px;
+}
+
+.texto-teorias p {
+    font-size: 15px;
+    color: #e0e3ed;
+    line-height: 2;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* ============================= */
+/* CUARTA PAGINA: LINKS          */
+/* ============================= */
+
+.menu-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.menu-links a.pildora {
+    padding: 8px 22px;
+    border-radius: 50px;
+    background: rgba(235,240,255,0.9);
+    color: #0a0c14;
+}
+
+.menu-links a:hover {
+    text-shadow: 0 0 10px white;
+}
+
+.contenido-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 55px;
+    min-height: 350px;
+}
+
+.imagen-links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.imagen-links img {
+    width: 100%;
+    max-width: 420px;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 1px solid rgba(210,220,255,0.45);
+    box-shadow: 0 0 25px rgba(150,180,255,0.18);
+    transition: 0.5s;
+}
+
+.imagen-links img:hover {
+    transform: scale(1.035);
+    box-shadow: 0 0 35px rgba(160,200,255,0.4);
+}
+
+.lista-links {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.lista-links a {
+    color: #e0e3ed;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(210,225,255,0.35);
+    transition: 0.3s;
+}
+
+.lista-links a:hover {
+    color: white;
+    text-shadow: 0 0 12px #a9d8ff;
+    border-bottom-color: white;
+}
+
+/* DISEÑO PARA CELULARES */
+
+@media(max-width: 750px) {
+
+    .pagina {
+        padding: 15px 10px;
+        min-height: 100vh;
+    }
+
+    .contenedor {
+        padding: 25px 20px 85px;
+        min-height: 850px;
+        border-radius: 15px;
+    }
+
+    .menu {
+        gap: 5px;
+        margin-bottom: 35px;
+    }
+
+    .menu-titulo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .menu a {
+        font-size: 11px;
+        padding: 9px 8px;
+    }
+
+    .titulo {
+        font-size: 30px;
+        margin-bottom: 35px;
+    }
+
+    .contenido {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    #tema2 .contenido {
+        flex-direction: column;
+    }
+
+    #tema2 .texto,
+    #tema2 .imagen {
+        order: initial;
+    }
+
+    .imagen img {
+        height: 250px;
+        max-width: 100%;
+    }
+
+    .texto {
+        padding: 5px;
+    }
+
+    .texto h2 {
+        font-size: 21px;
+    }
+
+    .texto p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .navegacion {
+        left: 20px;
+        right: 20px;
+        bottom: 22px;
+    }
+
+    .numero {
+        display: none;
+    }
+
+    .contenido-teorias {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "galaxia"
+        "estrella"
+        "texto";
+        gap: 20px;
+    }
+
+    .galaxia img,
+    .estrella img {
+        height: 200px;
+        max-width: 100%;
+    }
+
+    .planeta {
+        width: 55px;
+        height: 55px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .texto-teorias {
+        padding: 5px;
+    }
+
+    .texto-teorias p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .menu-links {
+        gap: 18px;
+        margin-bottom: 35px;
+    }
+
+    .menu-links a {
+        font-size: 12px;
+    }
+
+    .contenido-links {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .imagen-links img {
+        height: 250px;
+        max-width: 100%;
+    }
+
+    .lista-links {
+        padding: 5px;
+        gap: 16px;
+    }
+
+}
